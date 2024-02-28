@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.AboutActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="About Us"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginBottom="20dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/about_us" />
+
+        <TextView
+            android:id="@+id/titleOne"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="About me : "
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/descriptionOne"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Over the past two decades, you have honed your skills as an educator and have undoubtedly made a positive impact on the lives of numerous individuals. Through your coaching, you have guided and supported students, professionals, or individuals seeking personal growth, helping them achieve their goals and unlock their full potential. Your extensive teaching experience has allowed you to refine your instructional methods, enabling you to effectively communicate complex concepts in a clear and engaging manner. You understand the importance of tailoring your teaching approach to suit the unique needs and learning styles of your students, ensuring that each individual receives personalized attention and guidance." />
+
+        <TextView
+            android:id="@+id/titleTwo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Experience : "
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/descriptionTwo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="As you move forward in your coaching journey, your vast experience will continue to serve as a foundation for your success. You are a mentor, motivator, and guide, empowering others to reach their goals and fulfill their potential. Your dedication to education has made a lasting impact on the lives of those you have taught, and it will continue to shape the lives of future students who have the privilege of learning from you.
+Overall, as the owner of a coaching business with 20 years of teaching experience, your expertise, passion, and commitment to the growth and development of others make you a highly respected and influential figure in your field." />
+
+    </LinearLayout>
+</ScrollView>
