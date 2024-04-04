@@ -8,6 +8,5 @@ public class Constants {
     public static String GET_PDFs_URL = API_BASE_URL  + "/api/v1/pdfs/get";
     public static String GET_VIDEO_URL = API_BASE_URL  + "/api/v1/video/get";
     public static String POST_CONTACT_URL = API_BASE_URL  + "/api/v1/contact/post";
-
     public static String GET_NOTIFICATION_URL = API_BASE_URL + "/api/v1/notification/get";
 }

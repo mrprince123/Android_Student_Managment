@@ -12,6 +12,11 @@
         android:title="Video YT" />
 
     <item
+        android:id="@+id/teacher_view"
+        android:icon="@drawable/baseline_school_24"
+        android:title="Teachers"/>
+
+    <item
         android:id="@+id/navigation_pdf"
         android:icon="@drawable/outline_picture_as_pdf_24"
         android:title="Pdfs" />

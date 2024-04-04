@@ -18,6 +18,12 @@
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
+        android:id="@+id/teacher_view"
+        android:name="com.checking.choaching_app.fragment.TeachersFragment"
+        android:label="Teachers"
+        tools:layout="@layout/fragment_teachers"/>
+
+    <fragment
         android:id="@+id/navigation_pdf"
         android:name="com.checking.choaching_app.fragment.PdfFragment"
         android:label="Pdfs"

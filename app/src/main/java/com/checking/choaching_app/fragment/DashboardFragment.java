@@ -102,12 +102,15 @@ public class DashboardFragment extends Fragment {
     void searchVideoBySubject(String subject) {
         ArrayList<Video> filteredVideos = new ArrayList<>();
         String trimmedSubject = subject.trim();
+        boolean found = false;
 
         for (Video video : videos) {
             if (video.getSubject().equalsIgnoreCase(trimmedSubject)) {
                 filteredVideos.add(video);
+                found = true;
             } else {
-                binding.dataNotFound.setText("No Video found with this subject");
+                binding.dataNotFound.setText("No Video Found with this Subject");
+
             }
         }
         videoAdapter.setVideoList(filteredVideos);

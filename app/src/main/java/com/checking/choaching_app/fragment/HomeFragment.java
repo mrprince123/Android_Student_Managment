@@ -1,10 +1,12 @@
 package com.checking.choaching_app.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -16,6 +18,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.checking.choaching_app.activity.BiologyActivity;
+import com.checking.choaching_app.activity.ChemistryActivity;
+import com.checking.choaching_app.activity.MathActivity;
+import com.checking.choaching_app.activity.PhysicsActivity;
 import com.checking.choaching_app.adapters.PdfAdapter;
 import com.checking.choaching_app.adapters.TeacherAdapter;
 import com.checking.choaching_app.adapters.VideoAdapter;
@@ -42,9 +48,10 @@ public class HomeFragment extends Fragment {
     VideoAdapter videoAdapter;
     ArrayList<Video> videos;
 
-
     PdfAdapter pdfAdapter;
     ArrayList<Pdf> pdfs;
+
+    LinearLayout mathRedirect, physicsRedirect, chemistryRedirect, biologyRedirect;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -60,17 +67,64 @@ public class HomeFragment extends Fragment {
         // This is for  the Recent PDFs
         initPDFs();
         // This is for the Teachers
+
+        //This is for the Physics Video
+        binding.physicsRedirect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                physicsRedirect();
+            }
+        });
+        // This is for the Math Video
+        binding.mathRedirect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mathRedirect();
+            }
+        });
+
+//        This is for the Chemistry Video
+        binding.chemistryRedirect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                chemistryRedirect();
+            }
+        });
+
+//        This is for the Biology Video
+        binding.bioRedirect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                bioRedirect();
+            }
+        });
         return view;
+
+    }
+
+    void physicsRedirect() {
+        Intent intent = new Intent(getContext(), PhysicsActivity.class);
+        startActivity(intent);
+    }
+
+    void mathRedirect() {
+        Intent intent = new Intent(getContext(), MathActivity.class);
+        startActivity(intent);
+    }
+
+    void bioRedirect() {
+        Intent intent = new Intent(getContext(), BiologyActivity.class);
+        startActivity(intent);
+    }
+
+    void chemistryRedirect() {
+        Intent intent = new Intent(getContext(), ChemistryActivity.class);
+        startActivity(intent);
     }
 
     void initTeacher() {
         teachers = new ArrayList<>();
         teacherAdapter = new TeacherAdapter(getContext(), teachers);
-
-//        teachers.add(new Teacher("Teacher 1", "teacher123@gmail.com", "https://t3.ftcdn.net/jpg/02/65/18/30/360_F_265183061_NkulfPZgRxbNg3rvYSNGGwi0iD7qbmOp.jpg", "86545654545", "Subject : Math", "A teacher is an individual who provides instruction and guidance to students in an educational setting. Teachers play a crucial role in the development and education of students, imparting knowledge, skills, and values that help shape their intellectual, social, and emotional growth."));
-//        teachers.add(new Teacher("Teacher 2", "teacher123@gmail.com", "https://t3.ftcdn.net/jpg/02/65/18/30/360_F_265183061_NkulfPZgRxbNg3rvYSNGGwi0iD7qbmOp.jpg", "85486545655", "Subject : Physics", "A teacher is an individual who provides instruction and guidance to students in an educational setting. Teachers play a crucial role in the development and education of students, imparting knowledge, skills, and values that help shape their intellectual, social, and emotional growth."));
-//        teachers.add(new Teacher("Teacher 3", "teacher123@gmail.com", "https://t3.ftcdn.net/jpg/02/65/18/30/360_F_265183061_NkulfPZgRxbNg3rvYSNGGwi0iD7qbmOp.jpg", "54854855455", "Subject : Chemistry", "A teacher is an individual who provides instruction and guidance to students in an educational setting. Teachers play a crucial role in the development and education of students, imparting knowledge, skills, and values that help shape their intellectual, social, and emotional growth."));
-//        teachers.add(new Teacher("Teacher 4", "teacher123@gmail.com", "https://t3.ftcdn.net/jpg/02/65/18/30/360_F_265183061_NkulfPZgRxbNg3rvYSNGGwi0iD7qbmOp.jpg", "78984561233", "Subject : Biology", "A teacher is an individual who provides instruction and guidance to students in an educational setting. Teachers play a crucial role in the development and education of students, imparting knowledge, skills, and values that help shape their intellectual, social, and emotional growth."));
 
         getTeachers();
 
@@ -91,9 +145,9 @@ public class HomeFragment extends Fragment {
                 try {
                     JSONObject teacherObj = new JSONObject(response);
 
-                    if(teacherObj.getString("success").equals("true")){
+                    if (teacherObj.getString("success").equals("true")) {
                         JSONArray teacherArray = teacherObj.getJSONArray("data");
-                        for(int i = 0; i<teacherArray.length(); i++){
+                        for (int i = 0; i < teacherArray.length(); i++) {
                             JSONObject object = teacherArray.getJSONObject(i);
 
                             Teacher teacher = new Teacher(
@@ -109,7 +163,7 @@ public class HomeFragment extends Fragment {
                         teacherAdapter.notifyDataSetChanged();
                     }
 
-                } catch (JSONException e){
+                } catch (JSONException e) {
                     Log.e("ERROR", e.toString());
                 }
 
@@ -122,6 +176,7 @@ public class HomeFragment extends Fragment {
         });
         queue.add(request);
     }
+
     void getCarousel() {
         RequestQueue queue = Volley.newRequestQueue(getContext());
         StringRequest request = new StringRequest(Request.Method.GET, Constants.GET_CAROUSEL_URL, response -> {
@@ -159,13 +214,14 @@ public class HomeFragment extends Fragment {
 //        videos.add(new Video("https://youtu.be/14BL_FwQCpM", "This is Basic Testing of Math", "Math", "This is the Small description of the Video Url that we are testing that if this is working or not if it works in be happy and test all things and go ahead."));
 //        videos.add(new Video("https://youtu.be/5JQi0PmcvEY", "This is Basic Testing of Biology", "Biology", "This is the Small description of the Video Url that we are testing that if this is working or not if it works in be happy and test all things and go ahead."));
 
-            getVideo();
+        getVideo();
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         binding.videoYTList.setLayoutManager(layoutManager);
         binding.videoYTList.setAdapter(videoAdapter);
     }
-    void getVideo(){
+
+    void getVideo() {
         RequestQueue requestQueue = Volley.newRequestQueue(getContext());
         String url = Constants.GET_VIDEO_URL;
 
@@ -176,9 +232,9 @@ public class HomeFragment extends Fragment {
                 try {
 
                     JSONObject videoObj = new JSONObject(response);
-                    if(videoObj.getString("success").equals("true")){
+                    if (videoObj.getString("success").equals("true")) {
                         JSONArray videoArray = videoObj.getJSONArray("data");
-                        for(int i = 0; i<videoArray.length(); i++){
+                        for (int i = 0; i < videoArray.length(); i++) {
                             JSONObject object = videoArray.getJSONObject(i);
 
                             Video video = new Video(
@@ -193,7 +249,7 @@ public class HomeFragment extends Fragment {
                         videoAdapter.notifyDataSetChanged();
                     }
 
-                } catch (JSONException e){
+                } catch (JSONException e) {
                     Log.e("ERROR", e.toString());
                 }
 
@@ -217,6 +273,7 @@ public class HomeFragment extends Fragment {
         binding.pdfList.setLayoutManager(layoutManager);
         binding.pdfList.setAdapter(pdfAdapter);
     }
+
     void getPdf() {
 
         RequestQueue queue = Volley.newRequestQueue(getContext());
@@ -229,9 +286,9 @@ public class HomeFragment extends Fragment {
 
                 try {
                     JSONObject pdfObj = new JSONObject(response);
-                    if(pdfObj.getString("success").equals("true")){
+                    if (pdfObj.getString("success").equals("true")) {
                         JSONArray pdfArray = pdfObj.getJSONArray("data");
-                        for(int i = 0; i<pdfArray.length(); i++){
+                        for (int i = 0; i < pdfArray.length(); i++) {
                             JSONObject object = pdfArray.getJSONObject(i);
 
                             // Extracting the date and removing the time portion
@@ -249,7 +306,7 @@ public class HomeFragment extends Fragment {
                         }
                         pdfAdapter.notifyDataSetChanged();
                     }
-                } catch (JSONException e){
+                } catch (JSONException e) {
                     Log.e("NOT WORKING", e.toString());
                 }
             }

@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layout_marginBottom="80dp"
-    android:padding="10dp"
-    tools:context=".fragment.DashboardFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragment.TeachersFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -22,7 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="5dp"
-            android:hint="Search Video by Subject"
+            android:hint="Search Teacher by name"
             android:inputType="text" />
 
         <Button
@@ -37,24 +35,30 @@
 
     </LinearLayout>
 
+
     <LinearLayout
         android:layout_width="match_parent"
+        android:padding="10dp"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/dataNotFound"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            android:gravity="center"/>
-
+            android:layout_marginTop="10dp"
+            android:text="Our Teachers"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textAlignment="center"
+            android:layout_marginBottom="5dp"
+            android:textStyle="bold" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/videoYTList"
+            android:id="@+id/teacherList"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
 
     </LinearLayout>
+
 </LinearLayout>

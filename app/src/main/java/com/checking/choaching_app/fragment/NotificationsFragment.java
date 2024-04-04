@@ -25,7 +25,6 @@ public class NotificationsFragment extends Fragment {
         binding = FragmentNotificationsBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
 
-
         binding.aboutId.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -6,11 +6,13 @@ import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.checking.choaching_app.R;
+import com.checking.choaching_app.activity.YtVideoActivity;
 import com.checking.choaching_app.databinding.ItemVideoBinding;
 import com.checking.choaching_app.models.Video;
 
@@ -59,8 +61,11 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
             @Override
             public void onClick(View v) {
                 String videoUrl = video.getVideoUrl();
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(videoUrl));
+                Intent intent = new Intent(context, YtVideoActivity.class);
+                intent.putExtra("VIDEO_URL", videoUrl);
                 context.startActivity(intent);
+//                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(videoUrl));
+//                context.startActivity(intent);
             }
         });
     }
